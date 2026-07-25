@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totelore | Sustainable Canvas Totes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcf9f5;
+            --card-bg: #ffffff;
+            --text-main: #332d29;
+            --text-muted: #6e655f;
+            --accent: #8a735c;
+            --accent-light: #f2ebe4;
+            --sage: #7a8b7b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background-color: rgba(252, 249, 245, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--accent-light);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--sage);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #735e49;
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            padding: 3rem 8%;
+            background-color: var(--accent-light);
+            text-align: center;
+        }
+
+        .feature-box h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--accent-light);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 320px;
+            background-color: #f4efe9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-style: italic;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* About Us Section */
+        .about {
+            padding: 5rem 8%;
+            background-color: var(--accent-light);
+            text-align: center;
+        }
+
+        .about-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-main);
+            color: #e6dfd5;
+            padding: 3rem 8% 2rem;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #b0a599;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #e6dfd5;
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid transparent;
+            transition: border 0.2s;
+        }
+
+        .social-links a:hover {
+            border-bottom: 1px solid #e6dfd5;
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #8c8073;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">totelore.in</a>
+        <nav>
+            <a href="#collections">Collections</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <p class="hero-tag">Where Every Tote Has a Tale</p>
+        <h1>Totelore.in</h1>
+        <p>Handpainted canvas totes</p>
+        <a href="#collections" class="btn">Explore Collections</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-box">
+            <h3>Eco-Friendly Canvas</h3>
+            <p>100% sustainable materials crafted with love and durability in mind.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Artisan Designs</h3>
+            <p>Each story hand-painted & printed with intricate custom artwork.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Endlessly Carried</h3>
+            <p>Spacious, sturdy, and built to accompany all your daily journeys.</p>
+        </div>
+    </section>
+
+    <!-- COLLECTIONS SECTION -->
+    <section class="collections" id="collections">
+        <h2 class="section-title">Featured Tales</h2>
+        <p class="section-subtitle">Discover our signature hand-designed tote collections</p>
+
+        <div class="grid">
+            
+            <!-- WHISKER TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="whisker-1.jpeg" alt="Whisker Tales - Girl & White Cat">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Whisker Tales (Vol. 1)</h3>
+                    <p class="card-desc">Warm yellow theme with girl & white cat illustration.</p>
+                    <p class="card-price">₹499</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="whisker-2.jpeg" alt="Whisker Tales - Midnight Blue">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Whisker Tales (Vol. 2)</h3>
+                    <p class="card-desc">Midnight blue theme with girl & black cat design.</p>
+                    <p class="card-price">₹499</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <!-- BLOOM TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="bloom-1.jpeg" alt="Bloom Tales - Butterfly Fairy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Bloom Tales (Vol. 1)</h3>
+                    <p class="card-desc">Enchanted butterfly fairy illustration.</p>
+                    <p class="card-price">₹399</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="bloom-2.jpeg" alt="Bloom Tales - Bouquet Girl">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Bloom Tales (Vol. 2)</h3>
+                    <p class="card-desc">Girl carrying a colorful bouquet of flowers.</p>
+                    <p class="card-price">₹399</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="bloom-3.jpeg" alt="Bloom Tales - Minimalist Floral">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Bloom Tales (Vol. 3)</h3>
+                    <p class="card-desc">Delicate minimalist botanical artwork.</p>
+                    <p class="card-price">₹349</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <!-- MURUGA TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="muruga-1.jpeg" alt="Muruga Tales">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Muruga Tales</h3>
+                    <p class="card-desc">Devotional hand-painted Lord Murugan illustration.</p>
+                    <p class="card-price">₹599</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <!-- NATYA TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="natya-1.jpeg" alt="Natya Tales">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Natya Tales</h3>
+                    <p class="card-desc">Celebrating classical dance, movement, and rhythm.</p>
+                    <p class="card-price">₹399</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+            <!-- MADHAVA TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="madhava-1.jpeg" alt="Madhava Tales">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Madhava Tales</h3>
+                    <p class="card-desc">Devotional Little Krishna artwork with peacock feather details.</p>
+                    <p class="card-price">₹499</p>
+                    <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section class="about" id="about">
+        <h2 class="section-title">Behind the Tale</h2>
+        <p class="section-subtitle">Where passion meets sustainable artistry</p>
+
+        <div class="about-container">
+            <p class="about-text">
+                Welcome to <strong>Totelore</strong>! Totelore began with two medical students, a love for painting, and a dream to create something of our own. What started as a simple idea soon became a collection of hand-painted canvas totes, each telling a unique story...
+            </p>
+            <p class="about-text">
+                Every piece is carefully painted by hand, making no two totes exactly alike... Thoughtfully crafted, sustainably made, and designed to carry more than just your essentials because, we believe EVERY TOTE HAS A TALE
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer id="contact">
+        <h2>Totelore.in</h2>
+        <p>Where every tote has a Tale</p>
+        <div class="social-links">
+            <a href="https://instagram.com/totelore.in_" target="_blank">Instagram (@totelore.in_)</a>
+            <a href="mailto:totelore.in@gmail.com">Email Us ( totelore.in@gmail.com ) </a> 
+        </div>
+        <p class="copyright">&copy; 2026 Totelore. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+            
