@@ -282,6 +282,49 @@
             font-size: 0.8rem;
             color: #8c8073;
         }
+		/* How to Order Section */
+        .how-to-order {
+            padding: 4rem 8%;
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--accent-light);
+            text-align: left;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .step-card p  {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -290,7 +333,8 @@
         <a href="#" class="logo">totelore.in</a>
         <nav>
             <a href="#collections">Collections</a>
-            <a href="#about">About</a>
+			<a href="#about">About</a>
+			<a href="#how-to-order">How to Order</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -442,14 +486,32 @@
             </p>
         </div>
     </section>
+    <!-- HOW TO ORDER SECTION -->
+    <section class="how-to-order" id="how-to-order">
+        <h2 class="section-title">How to Order</h2>
+        <p class="section-subtitle">Simple steps to get your favorite tote home</p>
 
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Via Instagram App</h3>
+                <p>Click <strong>"Order on Instagram"</strong> under your chosen tote -> You will see the corresponding post on Instagram app —> just tap <strong>"View Product"</strong> to place your order!</p>
+        </div>
+
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Without Instagram App</h3>
+                <p>Simply send us an email with the tote name and your location!</p>
+            </div>
+        </div>
+    </section>
     <!-- FOOTER SECTION -->
     <footer id="contact">
         <h2>Totelore.in</h2>
         <p>Where every tote has a Tale</p>
         <div class="social-links">
-            <a href="https://instagram.com/totelore.in_" target="_blank">Instagram (@totelore.in_)</a>
-            <a href="mailto:totelore.in@gmail.com">Email Us ( totelore.in@gmail.com ) </a> 
+            <a href="https://instagram.com/totelore.in_" target="_blank">Instagram: @totelore.in_ </a>
+            <a href="mailto:totelore.in@gmail.com">Email Us: totelore.in@gmail.com  </a> 
         </div>
         <p class="copyright">&copy; 2026 Totelore. All rights reserved.</p>
     </footer>
