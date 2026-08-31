@@ -583,7 +583,7 @@
     apiKey: "AIzaSyDwEaBnQgvP_0PfEG3Pex3Uu59VTM0CE9E",
     authDomain: "totelore.firebaseapp.com",
     databaseURL: "https://totelore-default-rtdb.firebaseio.com",
-    projectId: "totelore",
+    projectId: "Totelore",
     storageBucket: "totelore.firebasestorage.app",
     messagingSenderId: "680255083070",
     appId: "1:680255083070:web:40fe9a54c680af5fdbf76f",
@@ -913,7 +913,7 @@
         const reviewsList = document.getElementById('reviewsList'); 
 
         if (reviewsList) {
-           const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+           const q = query(collection(db, "Reviews"), orderBy("timestamp", "desc"));
            onSnapshot(q, (snapshot) => {
             reviewsList.innerHTML = "";
             snapshot.forEach((doc) => {
@@ -977,7 +977,7 @@
             const list = document.getElementById('reviewsList');
             
             try {
-                const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+                const q = query(collection(db, "Reviews"), orderBy("createdAt", "desc"));
                 const querySnapshot = await getDocs(q);
 
                 if (querySnapshot.empty) {
@@ -1047,7 +1047,7 @@
             };
 
             try {
-                await addDoc(collection(db, "reviews"), newReview);
+                await addDoc(collection(db, "Reviews"), newReview);
 
                 // Reset form fields
                 document.getElementById('reviewForm').reset();
