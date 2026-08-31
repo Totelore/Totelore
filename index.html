@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Totelore | Sustainable Canvas Totes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #fcf9f5;
@@ -15,12 +14,19 @@
             --accent: #8a735c;
             --accent-light: #f2ebe4;
             --sage: #7a8b7b;
+            --star-gold: #ffb400;
+            --border-color: #e8e2da;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -36,7 +42,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 8%;
-            background-color: rgba(252, 249, 245, 0.9);
+            background-color: rgba(252, 249, 245, 0.95);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -114,30 +120,9 @@
             transform: translateY(-2px);
         }
 
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            padding: 3rem 8%;
-            background-color: var(--accent-light);
-            text-align: center;
-        }
-
-        .feature-box h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .feature-box p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
         /* Collections Section */
         .collections {
-            padding: 5rem 8%;
+            padding: 4rem 8%;
         }
 
         .section-title {
@@ -156,7 +141,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2.5rem;
         }
 
@@ -165,13 +150,14 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--accent-light);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
         }
 
         .card-img {
@@ -181,9 +167,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-style: italic;
-            position: relative;
+            overflow: hidden;
         }
 
         .card-img img {
@@ -194,6 +178,9 @@
 
         .card-body {
             padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
             text-align: center;
         }
 
@@ -213,22 +200,286 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .card-btn {
+            display: block;
+            text-align: center;
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            margin-top: auto;
         }
 
-        /* About Us Section */
-        .about {
+        .card-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        /* REVIEWS TAB / SECTION */
+        .reviews-section {
             padding: 5rem 8%;
             background-color: var(--accent-light);
+        }
+
+        .reviews-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 850px) {
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Review Form */
+        .review-form-card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            height: fit-content;
+        }
+
+        .review-form-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.65rem 0.8rem;
+            font-size: 0.85rem;
+            font-family: inherit;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-color);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            background: #ffffff;
+        }
+
+        /* Interactive Star Rating Selector */
+        .star-rating-picker {
+            display: flex;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+
+        .star-rating-picker span {
+            color: #d8cecc;
+            transition: color 0.15s ease;
+        }
+
+        .star-rating-picker span.active {
+            color: var(--star-gold);
+        }
+
+        /* File Upload */
+        .photo-upload-box {
+            border: 1px dashed var(--accent);
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            background-color: var(--bg-color);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-upload-box input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .photo-upload-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .photo-preview {
+            margin-top: 0.5rem;
+            max-height: 80px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #735e49;
+        }
+
+        /* Reviews Feed List */
+        .reviews-feed-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .empty-reviews-state {
+            background: #ffffff;
+            padding: 2.5rem 1.5rem;
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .review-card {
+            background: #ffffff;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .review-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .reviewed-product {
+            font-size: 0.75rem;
+            color: var(--sage);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .star-display {
+            color: var(--star-gold);
+            font-size: 0.9rem;
+            letter-spacing: -1px;
+        }
+
+        .review-comment {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-photo-thumb {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
+        }
+
+        .review-photo-thumb:hover {
+            transform: scale(1.04);
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: #a0958d;
+            margin-top: 0.5rem;
+        }
+
+        /* Image Modal Zoom */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        /* About & How to Order */
+        .about {
+            padding: 5rem 8%;
             text-align: center;
         }
 
@@ -242,6 +493,48 @@
             color: var(--text-muted);
             line-height: 1.8;
             margin-bottom: 1.25rem;
+        }
+
+        .how-to-order {
+            padding: 4rem 8%;
+            background-color: var(--accent-light);
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -269,61 +562,12 @@
             text-decoration: none;
             margin: 0 0.75rem;
             font-size: 0.9rem;
-            border-bottom: 1px solid transparent;
-            transition: border 0.2s;
-        }
-
-        .social-links a:hover {
-            border-bottom: 1px solid #e6dfd5;
         }
 
         .copyright {
             margin-top: 2rem;
             font-size: 0.8rem;
             color: #8c8073;
-        }
-		/* How to Order Section */
-        .how-to-order {
-            padding: 4rem 8%;
-            background-color: var(--bg-color);
-            text-align: center;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 2rem auto 0;
-        }
-
-        .step-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--accent-light);
-            text-align: left;
-            position: relative;
-        }
-
-        .step-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .step-card h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .step-card p  {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
         }
     </style>
 </head>
@@ -333,8 +577,9 @@
         <a href="#" class="logo">totelore.in</a>
         <nav>
             <a href="#collections">Collections</a>
-			<a href="#about">About</a>
-			<a href="#how-to-order">How to Order</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#about">About</a>
+            <a href="#how-to-order">How to Order</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -342,36 +587,21 @@
     <section class="hero">
         <p class="hero-tag">Where Every Tote Has a Tale</p>
         <h1>Totelore.in</h1>
-        <p>Handpainted canvas totes</p>
+        <p>Handpainted canvas totes crafted with story & soul</p>
         <a href="#collections" class="btn">Explore Collections</a>
     </section>
 
-    <section class="features">
-        <div class="feature-box">
-            <h3>Eco-Friendly Canvas</h3>
-            <p>100% sustainable materials crafted with love and durability in mind.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Artisan Designs</h3>
-            <p>Each story hand-painted & printed with intricate custom artwork.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Endlessly Carried</h3>
-            <p>Spacious, sturdy, and built to accompany all your daily journeys.</p>
-        </div>
-    </section>
-
-    <!-- COLLECTIONS SECTION -->
+    <!-- ALL 11 PRODUCTS -->
     <section class="collections" id="collections">
         <h2 class="section-title">Featured Tales</h2>
-        <p class="section-subtitle">Discover our signature hand-designed tote collections</p>
+        <p class="section-subtitle">Discover our complete collection of hand-painted canvas totes</p>
 
         <div class="grid">
             
-            <!-- WHISKER TALES -->
+            <!-- 1. WHISKER TALES VOL 1 -->
             <div class="card">
                 <div class="card-img">
-                    <img src="whisker-1.jpeg" alt="Whisker Tales - Girl & White Cat">
+                    <img src="whisker-1.jpeg" alt="Whisker Tales - Girl & White Cat" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Whisker Tales (Vol. 1)</h3>
@@ -381,9 +611,10 @@
                 </div>
             </div>
 
+            <!-- 2. WHISKER TALES VOL 2 -->
             <div class="card">
                 <div class="card-img">
-                    <img src="whisker-2.jpeg" alt="Whisker Tales - Midnight Blue">
+                    <img src="whisker-2.jpeg" alt="Whisker Tales - Midnight Blue" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Whisker Tales (Vol. 2)</h3>
@@ -393,10 +624,10 @@
                 </div>
             </div>
 
-            <!-- BLOOM TALES -->
+            <!-- 3. BLOOM TALES VOL 1 -->
             <div class="card">
                 <div class="card-img">
-                    <img src="bloom-1.jpeg" alt="Bloom Tales - Butterfly Fairy">
+                    <img src="bloom-1.jpeg" alt="Bloom Tales - Butterfly Fairy" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Bloom Tales (Vol. 1)</h3>
@@ -406,9 +637,10 @@
                 </div>
             </div>
 
+            <!-- 4. BLOOM TALES VOL 2 -->
             <div class="card">
                 <div class="card-img">
-                    <img src="bloom-2.jpeg" alt="Bloom Tales - Bouquet Girl">
+                    <img src="bloom-2.jpeg" alt="Bloom Tales - Bouquet Girl" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Bloom Tales (Vol. 2)</h3>
@@ -418,9 +650,10 @@
                 </div>
             </div>
 
+            <!-- 5. BLOOM TALES VOL 3 -->
             <div class="card">
                 <div class="card-img">
-                    <img src="bloom-3.jpeg" alt="Bloom Tales - Minimalist Floral">
+                    <img src="bloom-3.jpeg" alt="Bloom Tales - Minimalist Floral" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Bloom Tales (Vol. 3)</h3>
@@ -429,22 +662,24 @@
                     <a href="https://www.instagram.com/p/Dap3Gobidi9/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
                 </div>
             </div>
-			<div class="card">
+
+            <!-- 6. BLOOM TALES VOL 4 -->
+            <div class="card">
                 <div class="card-img">
-                    <img src="bloom-4.jpg" alt="Bloom Tales - Minimalist Floral">
+                    <img src="bloom-4.jpg" alt="Bloom Tales - Botanical Floral" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Bloom Tales (Vol. 4)</h3>
-                    <p class="card-desc">A floral canvas tote bag featuring vibrant pink, purple, yellow, and green botanical details.</p>
+                    <p class="card-desc">Botanical floral canvas tote with vibrant details.</p>
                     <p class="card-price">₹399</p>
                     <a href="https://www.instagram.com/p/DcWhGsqGf5r/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
                 </div>
             </div>
 
-            <!-- MURUGA TALES -->
+            <!-- 7. MURUGA TALES -->
             <div class="card">
                 <div class="card-img">
-                    <img src="muruga-1.jpeg" alt="Muruga Tales">
+                    <img src="muruga-1.jpeg" alt="Muruga Tales" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Muruga Tales</h3>
@@ -454,10 +689,10 @@
                 </div>
             </div>
 
-            <!-- NATYA TALES -->
+            <!-- 8. NATYA TALES -->
             <div class="card">
                 <div class="card-img">
-                    <img src="natya-1.jpeg" alt="Natya Tales">
+                    <img src="natya-1.jpeg" alt="Natya Tales" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Natya Tales</h3>
@@ -467,10 +702,10 @@
                 </div>
             </div>
 
-            <!-- MADHAVA TALES -->
+            <!-- 9. MADHAVA TALES -->
             <div class="card">
                 <div class="card-img">
-                    <img src="madhava-1.jpeg" alt="Madhava Tales">
+                    <img src="madhava-1.jpeg" alt="Madhava Tales" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Madhava Tales</h3>
@@ -479,34 +714,113 @@
                     <a href="https://www.instagram.com/p/DahsKtJibaF/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
                 </div>
             </div>
-			<!-- QUIRKY TALES -->
+
+            <!-- 10. QUIRKY TALES -->
             <div class="card">
                 <div class="card-img">
-                    <img src="quirky-1.jpeg" alt="Quirky Tales">
+                    <img src="quirky-1.jpeg" alt="Quirky Tales" loading="lazy">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">Quirky Tales</h3>
-                    <p class="card-desc">Cream canvas tote bag with a cartoon girl and the quote “We listen and we don’t judge.</p>
+                    <p class="card-desc">Cream canvas tote bag with a cartoon girl and quote.</p>
                     <p class="card-price">₹399</p>
                     <a href="https://www.instagram.com/p/DcLtjnICShq/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
                 </div>
-            </div><!-- MADHUBANI TALES -->
-			<div class="card">
-			    <div class="card-img">
-				    <img src="Madhubani-1.jpeg" alt="Madhubani Tales">
-				</div>
-				<div class="card-body">
-				    <h3 class="card-title">Madhubani Tales</h3>
-                    <p class="card-desc">A graceful reader amidst blooming lotuses, celebrating calm, culture, and quiet elegance.</p>
+            </div>
+
+            <!-- 11. MADHUBANI TALES -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="Madhubani-1.jpeg" alt="Madhubani Tales" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Madhubani Tales</h3>
+                    <p class="card-desc">A graceful reader amidst blooming lotuses.</p>
                     <p class="card-price">₹399</p>
                     <a href="https://www.instagram.com/totelore.in_/p/DbpicHACdOk/" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-				 </div>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
+    <!-- REVIEWS TAB / SECTION -->
+    <section class="reviews-section" id="reviews">
+        <h2 class="section-title">Customer Reviews</h2>
+        <p class="section-subtitle">Real feedback & photos submitted by our buyers</p>
+
+        <div class="reviews-container">
+            
+            <!-- WRITE A REVIEW FORM -->
+            <div class="review-form-card">
+                <h3>✍️ Leave a Review</h3>
+                <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+                    <div class="form-group">
+                        <label>Select Product</label>
+                        <select id="productSelect" class="form-control" required>
+                            <option value="Whisker Tales (Vol. 1)">Whisker Tales (Vol. 1)</option>
+                            <option value="Whisker Tales (Vol. 2)">Whisker Tales (Vol. 2)</option>
+                            <option value="Bloom Tales (Vol. 1)">Bloom Tales (Vol. 1)</option>
+                            <option value="Bloom Tales (Vol. 2)">Bloom Tales (Vol. 2)</option>
+                            <option value="Bloom Tales (Vol. 3)">Bloom Tales (Vol. 3)</option>
+                            <option value="Bloom Tales (Vol. 4)">Bloom Tales (Vol. 4)</option>
+                            <option value="Muruga Tales">Muruga Tales</option>
+                            <option value="Natya Tales">Natya Tales</option>
+                            <option value="Madhava Tales">Madhava Tales</option>
+                            <option value="Quirky Tales">Quirky Tales</option>
+                            <option value="Madhubani Tales">Madhubani Tales</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating-picker" id="starPicker" data-rating="5">
+                            <span class="active" onclick="setRating(1)">★</span>
+                            <span class="active" onclick="setRating(2)">★</span>
+                            <span class="active" onclick="setRating(3)">★</span>
+                            <span class="active" onclick="setRating(4)">★</span>
+                            <span class="active" onclick="setRating(5)">★</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Name or Instagram Handle</label>
+                        <input type="text" id="reviewerName" class="form-control" placeholder="e.g. @ananya_art" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Review</label>
+                        <textarea id="reviewText" class="form-control" rows="3" placeholder="Tell us about the fabric, design, or print quality..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Attach Photo (Optional)</label>
+                        <div class="photo-upload-box">
+                            <span class="photo-upload-label">📷 Tap to attach a photo</span>
+                            <input type="file" id="photoInput" accept="image/*" onchange="previewUploadPhoto(event)">
+                        </div>
+                        <img id="photoPreview" class="photo-preview" alt="Photo Preview">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Post Review</button>
+                </form>
+            </div>
+
+            <!-- REVIEWS FEED -->
+            <div class="reviews-feed-wrapper">
+                <div class="filter-bar">
+                    <span class="filter-title">Customer Reviews</span>
+                </div>
+
+                <div id="reviewsList">
+                    <!-- Reviews render dynamically here -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
     <section class="about" id="about">
         <h2 class="section-title">Behind the Tale</h2>
         <p class="section-subtitle">Where passion meets sustainable artistry</p>
@@ -516,10 +830,11 @@
                 Welcome to <strong>Totelore</strong>! Totelore began with two medical students, a love for painting, and a dream to create something of our own. What started as a simple idea soon became a collection of hand-painted canvas totes, each telling a unique story...
             </p>
             <p class="about-text">
-                Every piece is carefully painted by hand, making no two totes exactly alike... Thoughtfully crafted, sustainably made, and designed to carry more than just your essentials because, we believe EVERY TOTE HAS A TALE
+                Every piece is carefully painted by hand, making no two totes exactly alike. Thoughtfully crafted, sustainably made, and designed to carry more than just your essentials because, we believe EVERY TOTE HAS A TALE.
             </p>
         </div>
     </section>
+
     <!-- HOW TO ORDER SECTION -->
     <section class="how-to-order" id="how-to-order">
         <h2 class="section-title">How to Order</h2>
@@ -529,8 +844,8 @@
             <div class="step-card">
                 <div class="step-num">1</div>
                 <h3>Via Instagram App</h3>
-                <p>Click <strong>"Order on Instagram"</strong> under your chosen tote -> You will see the corresponding post on Instagram app —> just tap <strong>"View Product"</strong> to place your order!</p>
-        </div>
+                <p>Click <strong>"Order on Instagram"</strong> under your chosen tote &rarr; You will see the corresponding post on Instagram app &rarr; just tap <strong>"View Product"</strong> to place your order!</p>
+            </div>
 
             <div class="step-card">
                 <div class="step-num">2</div>
@@ -539,17 +854,133 @@
             </div>
         </div>
     </section>
+
+    <!-- IMAGE MODAL ZOOM -->
+    <div class="image-modal" id="imageModal" onclick="this.style.display='none'">
+        <img id="modalImg" src="" alt="Customer Review Photo">
+    </div>
+
     <!-- FOOTER SECTION -->
     <footer id="contact">
         <h2>Totelore.in</h2>
         <p>Where every tote has a Tale</p>
         <div class="social-links">
-            <a href="https://instagram.com/totelore.in_" target="_blank">Instagram: @totelore.in_ </a>
-            <a href="mailto:totelore.in@gmail.com">Email Us: totelore.in@gmail.com  </a> 
+            <a href="https://instagram.com/totelore.in_" target="_blank">Instagram: @totelore.in_</a>
+            <a href="mailto:totelore.in@gmail.com">Email: totelore.in@gmail.com</a>
         </div>
         <p class="copyright">&copy; 2026 Totelore. All rights reserved.</p>
     </footer>
 
+    <!-- REVIEWS SCRIPT -->
+    <script>
+        function renderStars(rating) {
+            return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        }
+
+        function setRating(val) {
+            const picker = document.getElementById('starPicker');
+            picker.setAttribute('data-rating', val);
+            const stars = picker.querySelectorAll('span');
+            stars.forEach((s, idx) => {
+                if (idx < val) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        }
+
+        function previewUploadPhoto(event) {
+            const file = event.target.files[0];
+            const img = document.getElementById('photoPreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                img.style.display = 'none';
+            }
+        }
+
+        function openModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function renderReviews() {
+            const list = document.getElementById('reviewsList');
+            const savedReviews = JSON.parse(localStorage.getItem('totelore_reviews')) || [];
+
+            if (savedReviews.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-reviews-state">
+                        <p><strong>No reviews published yet.</strong></p>
+                        <p style="margin-top: 4px; font-size: 0.8rem;">Be the first customer to leave a review and photo!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = savedReviews.map(r => `
+                <div class="review-card">
+                    <div class="review-card-header">
+                        <div class="reviewer-info">
+                            <span class="reviewer-name">${escapeHTML(r.name)}</span>
+                            <span class="reviewed-product">${escapeHTML(r.product)}</span>
+                        </div>
+                        <span class="star-display">${renderStars(r.rating)}</span>
+                    </div>
+                    <div class="review-comment">${escapeHTML(r.comment)}</div>
+                    ${r.photo ? `<img src="${r.photo}" class="review-photo-thumb" onclick="openModal('${r.photo}')" alt="Customer review photo">` : ''}
+                    <div class="review-date">${r.date || 'Recently'}</div>
+                </div>
+            `).join('');
+        }
+
+        function handleReviewSubmit(event) {
+            event.preventDefault();
+
+            const product = document.getElementById('productSelect').value;
+            const name = document.getElementById('reviewerName').value.trim();
+            const comment = document.getElementById('reviewText').value.trim();
+            const rating = parseInt(document.getElementById('starPicker').getAttribute('data-rating') || '5', 10);
+            const photoImg = document.getElementById('photoPreview');
+            const photoData = photoImg.style.display === 'block' ? photoImg.src : '';
+
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+            const newReview = {
+                product: product,
+                name: name,
+                rating: rating,
+                comment: comment,
+                date: dateStr,
+                photo: photoData
+            };
+
+            const saved = JSON.parse(localStorage.getItem('totelore_reviews')) || [];
+            saved.unshift(newReview);
+            localStorage.setItem('totelore_reviews', JSON.stringify(saved));
+
+            renderReviews();
+
+            // Reset form
+            document.getElementById('reviewForm').reset();
+            document.getElementById('photoPreview').style.display = 'none';
+            setRating(5);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        document.addEventListener('DOMContentLoaded', renderReviews);
+    </script>
 </body>
 </html>
-            
