@@ -571,6 +571,30 @@
         }
     </style>
 </head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDwEaBnQgvP_0PfEG3Pex3Uu59VTM0CE9E",
+    authDomain: "totelore.firebaseapp.com",
+    databaseURL: "https://totelore-default-rtdb.firebaseio.com",
+    projectId: "Totelore",
+    storageBucket: "totelore.firebasestorage.app",
+    messagingSenderId: "680255083070",
+    appId: "1:680255083070:web:40fe9a54c680af5fdbf76f",
+    measurementId: "G-7K0Y2MTRTW"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 <body>
 
     <header>
@@ -872,13 +896,38 @@
     </footer>
 
     <!-- REVIEWS SCRIPT -->
-    <script>
+   <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            getDocs, 
+            query, 
+            orderBy, 
+            serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Replace these placeholder values with your Firebase Project credentials
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwEaBnQgvP_0PfEG3Pex3Uu59VTM0CE9E",
+            authDomain: "totelore.firebaseapp.com",
+            projectId: "totelore",
+            storageBucket: "totelore.firebasestorage.app",
+            messagingSenderId: "680255083070",
+            appId: "1:680255083070:web:40fe9a54c680af5fdbf76f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         function renderStars(rating) {
             return '★'.repeat(rating) + '☆'.repeat(5 - rating);
         }
 
         function setRating(val) {
             const picker = document.getElementById('starPicker');
+            if (!picker) return;
             picker.setAttribute('data-rating', val);
             const stars = picker.querySelectorAll('span');
             stars.forEach((s, idx) => {
@@ -910,38 +959,69 @@
             document.getElementById('imageModal').style.display = 'flex';
         }
 
-        function renderReviews() {
-            const list = document.getElementById('reviewsList');
-            const savedReviews = JSON.parse(localStorage.getItem('totelore_reviews')) || [];
-
-            if (savedReviews.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-reviews-state">
-                        <p><strong>No reviews published yet.</strong></p>
-                        <p style="margin-top: 4px; font-size: 0.8rem;">Be the first customer to leave a review and photo!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            list.innerHTML = savedReviews.map(r => `
-                <div class="review-card">
-                    <div class="review-card-header">
-                        <div class="reviewer-info">
-                            <span class="reviewer-name">${escapeHTML(r.name)}</span>
-                            <span class="reviewed-product">${escapeHTML(r.product)}</span>
-                        </div>
-                        <span class="star-display">${renderStars(r.rating)}</span>
-                    </div>
-                    <div class="review-comment">${escapeHTML(r.comment)}</div>
-                    ${r.photo ? `<img src="${r.photo}" class="review-photo-thumb" onclick="openModal('${r.photo}')" alt="Customer review photo">` : ''}
-                    <div class="review-date">${r.date || 'Recently'}</div>
-                </div>
-            `).join('');
+        function escapeHTML(str) {
+            return str ? str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            ) : '';
         }
 
-        function handleReviewSubmit(event) {
+        // Load reviews globally for all visitors from Firebase
+        async function renderReviews() {
+            const list = document.getElementById('reviewsList');
+            
+            try {
+                const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    list.innerHTML = `
+                        <div class="empty-reviews-state">
+                            <p><strong>No reviews published yet.</strong></p>
+                            <p style="margin-top: 4px; font-size: 0.8rem;">Be the first customer to leave a review and photo!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                querySnapshot.forEach((docSnap) => {
+                    const r = docSnap.data();
+                    const formattedDate = r.createdAt?.toDate 
+                        ? r.createdAt.toDate().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) 
+                        : 'Recently';
+                    
+                    html += `
+                        <div class="review-card">
+                            <div class="review-card-header">
+                                <div class="reviewer-info">
+                                    <span class="reviewer-name">${escapeHTML(r.name)}</span>
+                                    <span class="reviewed-product">${escapeHTML(r.product)}</span>
+                                </div>
+                                <span class="star-display">${renderStars(r.rating)}</span>
+                            </div>
+                            <div class="review-comment">${escapeHTML(r.comment)}</div>
+                            ${r.photo ? `<img src="${r.photo}" class="review-photo-thumb" onclick="openModal('${r.photo}')" alt="Customer review photo">` : ''}
+                            <div class="review-date">${formattedDate}</div>
+                        </div>
+                    `;
+                });
+
+                list.innerHTML = html;
+            } catch (error) {
+                console.error("Error loading reviews: ", error);
+                list.innerHTML = `<p style="text-align:center; color: red;">Failed to load reviews.</p>`;
+            }
+        }
+
+        // Save review globally so all users see it
+        async function handleReviewSubmit(event) {
             event.preventDefault();
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerText = "Posting...";
+                submitBtn.disabled = true;
+            }
 
             const product = document.getElementById('productSelect').value;
             const name = document.getElementById('reviewerName').value.trim();
@@ -950,35 +1030,42 @@
             const photoImg = document.getElementById('photoPreview');
             const photoData = photoImg.style.display === 'block' ? photoImg.src : '';
 
-            const today = new Date();
-            const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-
             const newReview = {
                 product: product,
                 name: name,
                 rating: rating,
                 comment: comment,
-                date: dateStr,
-                photo: photoData
+                photo: photoData,
+                createdAt: serverTimestamp()
             };
 
-            const saved = JSON.parse(localStorage.getItem('totelore_reviews')) || [];
-            saved.unshift(newReview);
-            localStorage.setItem('totelore_reviews', JSON.stringify(saved));
+            try {
+                await addDoc(collection(db, "reviews"), newReview);
 
-            renderReviews();
+                // Reset form fields
+                document.getElementById('reviewForm').reset();
+                document.getElementById('photoPreview').style.display = 'none';
+                setRating(5);
 
-            // Reset form
-            document.getElementById('reviewForm').reset();
-            document.getElementById('photoPreview').style.display = 'none';
-            setRating(5);
+                // Reload review list for everyone
+                await renderReviews();
+            } catch (error) {
+                console.error("Error writing review: ", error);
+                alert("Failed to post review. Please try again.");
+            } finally {
+                if (submitBtn) {
+                    submitBtn.innerText = "Post Review";
+                    submitBtn.disabled = false;
+                }
+            }
         }
 
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            );
-        }
+        // Expose functions globally for inline HTML event handlers (onclick, onchange, etc.)
+        window.setRating = setRating;
+        window.previewUploadPhoto = previewUploadPhoto;
+        window.openModal = openModal;
+        window.handleReviewSubmit = handleReviewSubmit;
+        window.renderReviews = renderReviews;
 
         document.addEventListener('DOMContentLoaded', renderReviews);
     </script>
