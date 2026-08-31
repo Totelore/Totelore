@@ -913,7 +913,7 @@
         const reviewsList = document.getElementById('reviewsList'); 
 
         if (reviewsList) {
-           const q = query(collection(db, "Reviews"), orderBy("timestamp", "desc"));
+           const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
            onSnapshot(q, (snapshot) => {
             reviewsList.innerHTML = "";
             snapshot.forEach((doc) => {
@@ -977,7 +977,7 @@
             const list = document.getElementById('reviewsList');
             
             try {
-                const q = query(collection(db, "Reviews"), orderBy("createdAt", "desc"));
+                const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
                 const querySnapshot = await getDocs(q);
 
                 if (querySnapshot.empty) {
@@ -1047,7 +1047,7 @@
             };
 
             try {
-                await addDoc(collection(db, "Reviews"), newReview);
+                await addDoc(collection(db, "reviews"), newReview);
 
                 // Reset form fields
                 document.getElementById('reviewForm').reset();
