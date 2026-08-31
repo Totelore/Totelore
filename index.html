@@ -906,6 +906,7 @@
             query, 
             orderBy, 
             serverTimestamp 
+			onSnapshot
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // Replace these placeholder values with your Firebase Project credentials
@@ -920,7 +921,24 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const reviewsList = document.getElementById('reviewsList'); 
 
+        if (reviewsList) {
+           const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
+           onSnapshot(q, (snapshot) => {
+            reviewsList.innerHTML = "";
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                reviewsList.innerHTML += `
+                    <div class="review-card">
+                        <h4>${data.name}</h4>
+                        <p>${renderStars(data.rating || 5)}</p>
+                        <p>${data.review}</p>
+                    </div>
+                `;
+            });
+        });
+    }
         function renderStars(rating) {
             return '★'.repeat(rating) + '☆'.repeat(5 - rating);
         }
