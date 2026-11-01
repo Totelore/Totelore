@@ -139,6 +139,34 @@
             font-size: 0.95rem;
         }
 
+        /* Category Styling */
+        .category-block {
+            margin-bottom: 4rem;
+        }
+
+        /* Collection Title Card Style */
+        .collection-title-card {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .collection-title-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .collection-title-card p {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -174,6 +202,27 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Customization Card Styling with ? Mark */
+        .custom-card {
+            border: 2px dashed var(--accent);
+            background: #faf6f0;
+        }
+
+        .custom-img {
+            background-color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.85;
+            user-select: none;
         }
 
         .card-body {
@@ -224,7 +273,7 @@
             color: #ffffff;
         }
 
-        /* REVIEWS TAB / SECTION */
+        /* REVIEWS SECTION */
         .reviews-section {
             padding: 5rem 8%;
             background-color: var(--accent-light);
@@ -244,7 +293,6 @@
             }
         }
 
-        /* Review Form */
         .review-form-card {
             background: #ffffff;
             padding: 2rem;
@@ -290,7 +338,6 @@
             background: #ffffff;
         }
 
-        /* Interactive Star Rating Selector */
         .star-rating-picker {
             display: flex;
             gap: 6px;
@@ -307,7 +354,6 @@
             color: var(--star-gold);
         }
 
-        /* File Upload */
         .photo-upload-box {
             border: 1px dashed var(--accent);
             padding: 0.75rem;
@@ -362,7 +408,6 @@
             background-color: #735e49;
         }
 
-        /* Reviews Feed List */
         .reviews-feed-wrapper {
             display: flex;
             flex-direction: column;
@@ -457,7 +502,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Image Modal Zoom */
         .image-modal {
             display: none;
             position: fixed;
@@ -572,13 +616,8 @@
     </style>
 </head>
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyDwEaBnQgvP_0PfEG3Pex3Uu59VTM0CE9E",
     authDomain: "totelore.firebaseapp.com",
@@ -590,7 +629,6 @@
     measurementId: "G-7K0Y2MTRTW"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script>
 <body>
@@ -613,179 +651,241 @@
         <a href="#collections" class="btn">Explore Collections</a>
     </section>
 
-    <!-- ALL 12 PRODUCTS -->
+    <!-- COLLECTIONS WITH TITLE CARDS & CUSTOMIZATION -->
     <section class="collections" id="collections">
         <h2 class="section-title">Featured Tales</h2>
-        <p class="section-subtitle">Discover our complete collection of hand-painted canvas totes</p>
+        <p class="section-subtitle">Discover our complete collection of hand-painted canvas totes categorized by their story</p>
+		<p style="text-align: center; font-style: italic; color: var(--accent); margin-bottom: 2.5rem; font-weight: 500;">
+            All of given designs are custom designs, not catalog pieces.😊
+        </p>
 
-        <div class="grid">
-            
-            <!-- 1. WHISKER TALES VOL 1 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="whisker-1.jpeg" alt="Whisker Tales - Girl & White Cat" loading="lazy">
+        <!-- 1. WHISKER TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Whisker Tales</h3>
+                <p>"Carry a little purr wherever you go..!"</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="whisker-1.jpeg" alt="Whisker Tales - Girl & White Cat" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Whisker Tales (Vol. 1)</h3>
+                        <p class="card-desc">Warm red theme with girl & white cat illustration.</p>
+                        <p class="card-price">₹499</p>
+                        <a href="https://www.instagram.com/p/DaIAPoWCWin/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h3 class="card-title">Whisker Tales (Vol. 1)</h3>
-                    <p class="card-desc">Warm yellow theme with girl & white cat illustration.</p>
-                    <p class="card-price">₹499</p>
-                    <a href="https://www.instagram.com/p/DaIAPoWCWin/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="whisker-2.jpeg" alt="Whisker Tales - Midnight Blue" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Whisker Tales (Vol. 2)</h3>
+                        <p class="card-desc">Midnight blue theme with girl & black cat design.</p>
+                        <p class="card-price">₹499</p>
+                        <a href="https://www.instagram.com/p/DaZnRwpkc6U/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
                 </div>
             </div>
-
-            <!-- 2. WHISKER TALES VOL 2 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="whisker-2.jpeg" alt="Whisker Tales - Midnight Blue" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Whisker Tales (Vol. 2)</h3>
-                    <p class="card-desc">Midnight blue theme with girl & black cat design.</p>
-                    <p class="card-price">₹499</p>
-                    <a href="https://www.instagram.com/p/DaZnRwpkc6U/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 3. BLOOM TALES VOL 1 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="bloom-1.jpeg" alt="Bloom Tales - Butterfly Fairy" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Bloom Tales (Vol. 1)</h3>
-                    <p class="card-desc">Enchanted butterfly fairy illustration.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/DaTRyDAE0sT/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 4. BLOOM TALES VOL 2 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="bloom-2.jpeg" alt="Bloom Tales - Bouquet Girl" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Bloom Tales (Vol. 2)</h3>
-                    <p class="card-desc">Girl carrying a colorful bouquet of flowers.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/Dar8qHDCcm8/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 5. BLOOM TALES VOL 3 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="bloom-3.jpeg" alt="Bloom Tales - Minimalist Floral" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Bloom Tales (Vol. 3)</h3>
-                    <p class="card-desc">Delicate minimalist botanical artwork.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/Dap3Gobidi9/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 6. BLOOM TALES VOL 4 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="bloom-4.jpg" alt="Bloom Tales - Botanical Floral" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Bloom Tales (Vol. 4)</h3>
-                    <p class="card-desc">Botanical floral canvas tote with vibrant details.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/DcWhGsqGf5r/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 7. MURUGA TALES -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="muruga-1.jpeg" alt="Muruga Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Muruga Tales</h3>
-                    <p class="card-desc">Devotional hand-painted Lord Murugan illustration.</p>
-                    <p class="card-price">₹599</p>
-                    <a href="https://www.instagram.com/p/Da4vYo-iXeD/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 8. NATYA TALES -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="natya-1.jpeg" alt="Natya Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Natya Tales</h3>
-                    <p class="card-desc">Celebrating classical dance, movement, and rhythm.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/Dactg1gCWwN/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 9. MADHAVA TALES -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="madhava-1.jpeg" alt="Madhava Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Madhava Tales</h3>
-                    <p class="card-desc">Devotional Little Krishna artwork with peacock feather details.</p>
-                    <p class="card-price">₹499</p>
-                    <a href="https://www.instagram.com/p/DahsKtJibaF/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 10. QUIRKY TALES VOL 1-->
-            <div class="card">
-                <div class="card-img">
-                    <img src="quirky-1.jpeg" alt="Quirky Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Quirky Tales (Vol. 1)</h3>
-                    <p class="card-desc">Cream canvas tote bag with a cartoon girl and quote.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/totelore.in_/" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-             <!-- 11. QUIRKY TALES VOL 2-->
-            <div class="card">
-                <div class="card-img">
-                    <img src="quirky-2.jpeg" alt="Quirky Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Quirky Tales (Vol. 2)</h3>
-                    <p class="card-desc">Cream canvas tote bag with your favorite cartoon character.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/p/Dc5cdGhiRy_/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
-            <!-- 12. MADHUBANI TALES -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="Madhubani-1.jpeg" alt="Madhubani Tales" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Madhubani Tales</h3>
-                    <p class="card-desc">A graceful reader amidst blooming lotuses.</p>
-                    <p class="card-price">₹399</p>
-                    <a href="https://www.instagram.com/totelore.in_/p/DbpicHACdOk/" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
-                </div>
-            </div>
-
         </div>
+
+        <!-- 2. BLOOM TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Bloom Tales</h3>
+                <p>"Bloom beautifully, carry confidently..!"</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="bloom-1.jpeg" alt="Bloom Tales - Butterfly Fairy" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Bloom Tales (Vol. 1)</h3>
+                        <p class="card-desc">Enchanted butterfly fairy illustration.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/DaTRyDAE0sT/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="bloom-2.jpeg" alt="Bloom Tales - Bouquet Girl" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Bloom Tales (Vol. 2)</h3>
+                        <p class="card-desc">Girl carrying a colorful bouquet of flowers.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/Dar8qHDCcm8/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="bloom-3.jpeg" alt="Bloom Tales - Minimalist Floral" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Bloom Tales (Vol. 3)</h3>
+                        <p class="card-desc">Delicate minimalist botanical artwork.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/Dap3Gobidi9/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="bloom-4.jpg" alt="Bloom Tales - Botanical Floral" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Bloom Tales (Vol. 4)</h3>
+                        <p class="card-desc">Botanical floral canvas tote with vibrant details.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/DcWhGsqGf5r/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. MADHAVA & MURUGA TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Madhava & Muruga Tales</h3>
+                <p>"Hand-painted expressions of faith, divine grace, and spiritual serenity."</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="muruga-1.jpeg" alt="Muruga Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Muruga Tales</h3>
+                        <p class="card-desc">Devotional hand-painted Lord Murugan illustration.</p>
+                        <p class="card-price">₹599</p>
+                        <a href="https://www.instagram.com/p/Da4vYo-iXeD/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="madhava-1.jpeg" alt="Madhava Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Madhava Tales</h3>
+                        <p class="card-desc">Devotional Little Krishna artwork with peacock feather details.</p>
+                        <p class="card-price">₹499</p>
+                        <a href="https://www.instagram.com/p/DahsKtJibaF/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. NATYA TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Natya Tales</h3>
+                <p>"For the dancer, by the artist..!"</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="natya-1.jpeg" alt="Natya Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Natya Tales</h3>
+                        <p class="card-desc">Celebrating classical dance, movement, and rhythm.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/Dactg1gCWwN/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. QUIRKY TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Quirky Tales</h3>
+                <p>"Because, ordinary is overrated..!"</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="quirky-1.jpeg" alt="Quirky Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Quirky Tales (Vol. 1)</h3>
+                        <p class="card-desc">Cream canvas tote bag with a cartoon girl and quote.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/totelore.in_/" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="quirky-2.jpeg" alt="Quirky Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Quirky Tales (Vol. 2)</h3>
+                        <p class="card-desc">Cream canvas tote bag with your favorite cartoon character.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/p/Dc5cdGhiRy_/?img_index=1" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. MADHUBANI TALES -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Madhubani Tales</h3>
+                <p>"Let the tradition travel with you..!"</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="Madhubani-1.jpeg" alt="Madhubani Tales" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Madhubani Tales</h3>
+                        <p class="card-desc">A graceful reader amidst blooming lotuses.</p>
+                        <p class="card-price">₹399</p>
+                        <a href="https://www.instagram.com/totelore.in_/p/DbpicHACdOk/" target="_blank" class="card-btn">Order on Instagram &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. CUSTOM TALES (QUESTION MARK CARD) -->
+        <div class="category-block">
+            <div class="collection-title-card">
+                <h3>Custom Tales</h3>
+                <p>"Have a personal memory, favorite quote, or unique illustration? Let us paint your story."</p>
+            </div>
+            <div class="grid">
+                <div class="card custom-card">
+                    <div class="card-img custom-img">
+                        <span class="question-mark">?</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Your Custom Tale</h3>
+                        <p class="card-desc">Have a specific design in mind? Send us your reference image or concept and get a personalized tote!</p>
+                        <p class="card-price">Custom Pricing</p>
+                        <a href="https://instagram.com/totelore.in_" target="_blank" class="card-btn">Request Customization &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- REVIEWS TAB / SECTION -->
+    <!-- REVIEWS SECTION -->
     <section class="reviews-section" id="reviews">
         <h2 class="section-title">Customer Reviews</h2>
         <p class="section-subtitle">Real feedback & photos submitted by our buyers</p>
 
         <div class="reviews-container">
-            
-            <!-- WRITE A REVIEW FORM -->
             <div class="review-form-card">
                 <h3>✍️ Leave a Review</h3>
                 <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
@@ -804,6 +904,7 @@
                             <option value="Quirky Tales (Vol. 1)">Quirky Tales (Vol. 1)</option>
                             <option value="Quirky Tales (Vol. 2)">Quirky Tales (Vol. 2)</option>
                             <option value="Madhubani Tales">Madhubani Tales</option>
+                            <option value="Custom Tale">Custom Tale</option>
                         </select>
                     </div>
 
@@ -841,17 +942,12 @@
                 </form>
             </div>
 
-            <!-- REVIEWS FEED -->
             <div class="reviews-feed-wrapper">
                 <div class="filter-bar">
                     <span class="filter-title">Customer Reviews</span>
                 </div>
-
-                <div id="reviewsList">
-                    <!-- Reviews render dynamically here -->
-                </div>
+                <div id="reviewsList"></div>
             </div>
-
         </div>
     </section>
 
@@ -894,7 +990,6 @@
         </p>
     </section>
 
-    <!-- IMAGE MODAL ZOOM -->
     <div class="image-modal" id="imageModal" onclick="this.style.display='none'">
         <img id="modalImg" src="" alt="Customer Review Photo">
     </div>
@@ -911,11 +1006,10 @@
     </footer>
 
     <!-- REVIEWS SCRIPT -->
-   <script type="module">
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Replace these placeholder values with your Firebase Project credentials
         const firebaseConfig = {
             apiKey: "AIzaSyDwEaBnQgvP_0PfEG3Pex3Uu59VTM0CE9E",
             authDomain: "totelore.firebaseapp.com",
@@ -932,19 +1026,20 @@
         if (reviewsList) {
            const q = query(collection(db, "reviews"), orderBy("timestamp", "desc"));
            onSnapshot(q, (snapshot) => {
-            reviewsList.innerHTML = "";
-            snapshot.forEach((doc) => {
-                const data = doc.data();
-                reviewsList.innerHTML += `
-                    <div class="review-card">
-                        <h4>${data.name}</h4>
-                        <p>${renderStars(data.rating || 5)}</p>
-                        <p>${data.review}</p>
-                    </div>
-                `;
+                reviewsList.innerHTML = "";
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    reviewsList.innerHTML += `
+                        <div class="review-card">
+                            <h4>${data.name}</h4>
+                            <p>${renderStars(data.rating || 5)}</p>
+                            <p>${data.review}</p>
+                        </div>
+                    `;
+                });
             });
-        });
-    }
+        }
+
         function renderStars(rating) {
             return '★'.repeat(rating) + '☆'.repeat(5 - rating);
         }
@@ -989,10 +1084,8 @@
             ) : '';
         }
 
-        // Load reviews globally for all visitors from Firebase
         async function renderReviews() {
             const list = document.getElementById('reviewsList');
-            
             try {
                 const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
                 const querySnapshot = await getDocs(q);
@@ -1029,18 +1122,14 @@
                         </div>
                     `;
                 });
-
                 list.innerHTML = html;
             } catch (error) {
                 console.error("Error loading reviews: ", error);
-                list.innerHTML = `<p style="text-align:center; color: red;">Failed to load reviews.</p>`;
             }
         }
 
-        // Save review globally so all users see it
         async function handleReviewSubmit(event) {
             event.preventDefault();
-
             const submitBtn = event.target.querySelector('button[type="submit"]');
             if (submitBtn) {
                 submitBtn.innerText = "Posting...";
@@ -1065,13 +1154,9 @@
 
             try {
                 await addDoc(collection(db, "reviews"), newReview);
-
-                // Reset form fields
                 document.getElementById('reviewForm').reset();
                 document.getElementById('photoPreview').style.display = 'none';
                 setRating(5);
-
-                // Reload review list for everyone
                 await renderReviews();
             } catch (error) {
                 console.error("Error writing review: ", error);
@@ -1084,7 +1169,6 @@
             }
         }
 
-        // Expose functions globally for inline HTML event handlers (onclick, onchange, etc.)
         window.setRating = setRating;
         window.previewUploadPhoto = previewUploadPhoto;
         window.openModal = openModal;
